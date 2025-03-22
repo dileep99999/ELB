@@ -140,7 +140,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <Container>
           <span className="navbar-brand">
-            <img src="/src/assets/lt.png" alt="LT Logo" height="30" className="me-2" />
+            <img src="/lt.png" alt="LT Logo" height="30" className="me-2" />
             ELBS Admin Dashboard
           </span>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
