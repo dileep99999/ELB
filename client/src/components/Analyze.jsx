@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js'
 import { Pie, Bar } from 'react-chartjs-2'
+import API_BASE_URL from '../config/api'
 
 // Register ChartJS components
 ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
@@ -28,7 +29,7 @@ const Analyze = ({ setIsAuthenticated }) => {
     try {
       const token = localStorage.getItem('elbsAuthToken')
       
-      const response = await axios.get('/api/bookings/stats', {
+      const response = await axios.get(`${API_BASE_URL}/api/bookings/stats`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

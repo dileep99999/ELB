@@ -12,7 +12,11 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+// Configure CORS to allow requests from GitHub Pages
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://dileep99999.github.io'],
+  credentials: true
+}));
 
 // Define MongoDB connection string
 const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/elbs';

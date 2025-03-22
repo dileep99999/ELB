@@ -5,6 +5,7 @@ import axios from 'axios'
 import { jsPDF } from 'jspdf'
 import 'jspdf-autotable'
 import { Link, useNavigate } from 'react-router-dom'
+import API_BASE_URL from '../config/api'
 
 const Dashboard = ({ setIsAuthenticated }) => {
   const [bookings, setBookings] = useState([])
@@ -35,7 +36,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
     try {
       const token = localStorage.getItem('elbsAuthToken')
       
-      const response = await axios.get(`/api/bookings?date=${date}`, {
+      const response = await axios.get(`${API_BASE_URL}/api/bookings?date=${date}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
