@@ -12,10 +12,11 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-// Configure CORS to allow requests from GitHub Pages
+// Configure CORS to allow requests from any origin
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://dileep99999.github.io'],
-  credentials: true
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Define MongoDB connection string
@@ -32,6 +33,11 @@ mongoose.connect(mongoURI, {
 // Define routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/bookings', require('./routes/bookings'));
+
+// Add a simple health check route
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'ELBS API is running' });
+});
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
