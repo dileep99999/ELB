@@ -4,7 +4,7 @@ import { BsCalendarCheck, BsBoxArrowRight, BsArrowClockwise, BsFileEarmarkPdf } 
 import axios from 'axios'
 import { jsPDF } from 'jspdf'
 import 'jspdf-autotable'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Dashboard = ({ setIsAuthenticated }) => {
   const [bookings, setBookings] = useState([])
@@ -15,6 +15,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
     totalDepartments: 0,
     departments: []
   })
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Set default filter date to today
@@ -132,7 +133,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
   const handleLogout = () => {
     localStorage.removeItem('elbsAuthToken')
     setIsAuthenticated(false)
-    window.location.href = '/admin'
+    navigate('/admin')
   }
 
   return (
@@ -140,7 +141,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <Container>
           <span className="navbar-brand">
-            <img src="/lt.png" alt="LT Logo" height="30" className="me-2" />
+            <img src="/ELB/lt.png" alt="LT Logo" height="30" className="me-2" />
             ELBS Admin Dashboard
           </span>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Container, Row, Col, Card, Table, Spinner, Button } from 'react-bootstrap'
 import { BsCalendarCheck, BsBoxArrowRight } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js'
 import { Pie, Bar } from 'react-chartjs-2'
@@ -16,6 +16,7 @@ const Analyze = ({ setIsAuthenticated }) => {
     todayBookings: 0,
     departments: []
   })
+  const navigate = useNavigate()
   
   useEffect(() => {
     loadStatistics()
@@ -92,7 +93,7 @@ const Analyze = ({ setIsAuthenticated }) => {
   const handleLogout = () => {
     localStorage.removeItem('elbsAuthToken')
     setIsAuthenticated(false)
-    window.location.href = '/admin'
+    navigate('/admin')
   }
 
   return (
@@ -100,7 +101,7 @@ const Analyze = ({ setIsAuthenticated }) => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <Container>
           <span className="navbar-brand">
-            <img src="/lt.png" alt="LT Logo" height="30" className="me-2" />
+            <img src="/ELB/lt.png" alt="LT Logo" height="30" className="me-2" />
             ELBS Admin Dashboard
           </span>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

@@ -21,16 +21,6 @@ function App() {
   
   // Prevent browser back button navigation
   useEffect(() => {
-    const preventNavigation = (e) => {
-      // Cancel the event
-      e.preventDefault()
-      // Chrome requires returnValue to be set
-      e.returnValue = ''
-    }
-    
-    // Add event listener for beforeunload
-    window.addEventListener('beforeunload', preventNavigation)
-    
     // Block browser history navigation
     window.history.pushState(null, null, location.pathname)
     const blockNavigation = () => {
@@ -39,7 +29,6 @@ function App() {
     window.addEventListener('popstate', blockNavigation)
     
     return () => {
-      window.removeEventListener('beforeunload', preventNavigation)
       window.removeEventListener('popstate', blockNavigation)
     }
   }, [location])
