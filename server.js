@@ -39,8 +39,23 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'ELBS API is running' });
 });
 
-// Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
+// Root path for API
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    status: 'ok', 
+    message: 'ELBS API Server',
+    endpoints: [
+      '/api/auth/login',
+      '/api/bookings',
+      '/api/bookings/stats',
+      '/health'
+    ]
+  });
+});
+
+// Only serve static assets in a local development environment
+// We're hosting the frontend on GitHub Pages
+if (process.env.NODE_ENV === 'production' && !process.env.RENDER) {
   // Set static folder
   app.use(express.static('client/build'));
 
