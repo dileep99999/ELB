@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Container, Card, Form, Button, Alert } from 'react-bootstrap'
 import { BsShieldLock, BsCalendarCheck } from 'react-icons/bs'
-import axios from 'axios'
+import api from '../utils/api'
 import API_BASE_URL from '../config/api'
 
 const AdminLogin = ({ setIsAuthenticated }) => {
@@ -27,7 +27,7 @@ const AdminLogin = ({ setIsAuthenticated }) => {
     setError('')
     
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, formData)
+      const response = await api.post('/api/auth/login', formData)
       
       // Store token and set authentication state
       localStorage.setItem('elbsAuthToken', response.data.token)

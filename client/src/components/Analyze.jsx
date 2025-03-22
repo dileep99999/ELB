@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Container, Row, Col, Card, Table, Spinner, Button } from 'react-bootstrap'
 import { BsCalendarCheck, BsBoxArrowRight } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import api from '../utils/api'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js'
 import { Pie, Bar } from 'react-chartjs-2'
 import API_BASE_URL from '../config/api'
@@ -27,13 +27,7 @@ const Analyze = ({ setIsAuthenticated }) => {
     setLoading(true)
     
     try {
-      const token = localStorage.getItem('elbsAuthToken')
-      
-      const response = await axios.get(`${API_BASE_URL}/api/bookings/stats`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      const response = await api.get('/api/bookings/stats')
       
       setStats(response.data)
     } catch (error) {

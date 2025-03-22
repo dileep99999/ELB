@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Card, Form, Button, Alert } from 'react-bootstrap'
 import { BsCalendarCheck } from 'react-icons/bs'
-import axios from 'axios'
+import api from '../utils/api'
 import API_BASE_URL from '../config/api'
 
 const BookingForm = () => {
@@ -57,7 +57,7 @@ const BookingForm = () => {
     setLoading(true)
     
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/bookings`, formData)
+      const response = await api.post('/api/bookings', formData)
       
       // Show success message
       setAlert({

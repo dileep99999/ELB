@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Container, Row, Col, Card, Table, Button, Form, Spinner } from 'react-bootstrap'
 import { BsCalendarCheck, BsBoxArrowRight, BsArrowClockwise, BsFileEarmarkPdf } from 'react-icons/bs'
-import axios from 'axios'
+import api from '../utils/api'
 import { jsPDF } from 'jspdf'
 import 'jspdf-autotable'
 import { Link, useNavigate } from 'react-router-dom'
@@ -34,13 +34,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
     setLoading(true)
     
     try {
-      const token = localStorage.getItem('elbsAuthToken')
-      
-      const response = await axios.get(`${API_BASE_URL}/api/bookings?date=${date}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      const response = await api.get(`/api/bookings?date=${date}`)
       
       setBookings(response.data.bookings)
       updateStatistics(response.data.bookings)

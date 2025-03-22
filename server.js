@@ -12,12 +12,19 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-// Configure CORS to allow requests from any origin
+
+// Configure CORS properly to handle preflight requests
+// Must be before any route handlers
 app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: true, // This allows all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: true,
+  maxAge: 86400 // Cache preflight response for 24 hours
 }));
+
+// Add explicit OPTIONS handling for preflight requests
+app.options('*', cors());
 
 // Define MongoDB connection string
 const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/elbs';
