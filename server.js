@@ -16,7 +16,7 @@ app.use(express.json());
 // Configure CORS properly to handle preflight requests
 // Must be before any route handlers
 app.use(cors({
-  origin: true, // This allows all origins
+  origin: ['https://dileep99999.github.io', 'http://localhost:5173'], // Explicitly allow GitHub Pages domain and local dev
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   credentials: true,
@@ -48,8 +48,8 @@ app.get('/health', (req, res) => {
 
 // Root path for API
 app.get('/', (req, res) => {
-  res.status(200).json({ 
-    status: 'ok', 
+  res.status(200).json({
+    status: 'ok',
     message: 'ELBS API Server',
     endpoints: [
       '/api/auth/login',
@@ -65,7 +65,6 @@ app.get('/', (req, res) => {
 if (process.env.NODE_ENV === 'production' && !process.env.RENDER) {
   // Set static folder
   app.use(express.static('client/build'));
-
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
