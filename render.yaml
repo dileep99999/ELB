@@ -10,6 +10,6 @@ services:
       - key: JWT_SECRET
         sync: false
       - key: PORT
-        value: 10000
+        value: 5001
       - key: RENDER
         value: true 
