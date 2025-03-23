@@ -52,7 +52,7 @@ const AdminLogin = ({ setIsAuthenticated }) => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <Container>
           <span className="navbar-brand">
-            <img src="/ELB/lt.png" alt="LT Logo" height="30" className="me-2" />
+            <img src="/lt.png" alt="LT Logo" height="30" className="me-2" />
             Employee Lunch Booking System
           </span>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
