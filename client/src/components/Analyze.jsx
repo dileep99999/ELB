@@ -93,36 +93,27 @@ const Analyze = ({ setIsAuthenticated }) => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+      <nav className="navbar navbar-dark bg-primary mb-4">
         <Container>
           <span className="navbar-brand">
             <img src="/ELB/lt.png" alt="LT Logo" height="30" className="me-2" />
             ELBS Admin Dashboard
           </span>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/dashboard">Dashboard</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/analyze">Analyze</Link>
-              </li>
-            </ul>
-            <Button 
-              variant="outline-light" 
+          <div className="d-flex">
+            <Link className="btn btn-primary me-2" to="/dashboard">Dashboard</Link>
+            <Link className="btn btn-primary me-2" to="/analyze">Analyze</Link>
+            <Button
+              variant="outline-light"
               onClick={handleLogout}
+              className="d-flex align-items-center"
             >
-              <BsBoxArrowRight className="me-2" />
-              Logout
+              <BsBoxArrowRight className="me-1" /> Logout
             </Button>
           </div>
         </Container>
       </nav>
 
-      <Container>
+      <Container className="py-4">
       <h2 className="mb-4">Booking Analytics</h2>
       
       {loading ? (
