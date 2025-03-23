@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "https://LT/ELB",
+  "homepage": "https://dileep99999.github.io/ELB",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

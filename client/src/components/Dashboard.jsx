@@ -136,7 +136,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
       <nav className="navbar navbar-dark bg-primary mb-4">
         <Container>
           <span className="navbar-brand">
-            <img src="/lt.png" alt="LT Logo" height="30" className="me-2" />
+            <img src="/ELB/lt.png" alt="LT Logo" height="30" className="me-2" />
             ELBS Admin Dashboard
           </span>
           <div className="d-flex">
